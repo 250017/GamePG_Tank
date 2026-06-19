@@ -4,6 +4,7 @@
 #include "Engine/Debug.h"
 #include "Ground.h"
 #include "Engine/Camera.h"
+#include "TankHead.h"
 
 namespace
 {
@@ -34,6 +35,7 @@ void Tank::Initialize()
 {
 	hModel_ = Model::Load("TankBody.fbx");
 	assert(hModel_ >= 0);//モデルの読み込みに失敗していないか確認
+	Instantiate<TankHead>(this);
 }
 
 void Tank::Update()

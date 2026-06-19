@@ -1,15 +1,14 @@
 #pragma once
-#include "Engine//GameObject.h"
-
-class TankHead :
+#include "Engine/GameObject.h"
+class Bullet :
     public GameObject
 {
 public:
 	//コンストラクタ
 	//引数：parent  親オブジェクト（SceneManager）
-	TankHead(GameObject* parent);
+	Bullet(GameObject* parent);
 	//デストラクタ
-	~TankHead();
+	~Bullet() {};//インライン定義
 
 	//初期化
 	void Initialize() override;
@@ -22,7 +21,12 @@ public:
 
 	//開放
 	void Release() override;
+	void SetMoveVector(XMFLOAT3 move) { move_ = move; }//弾の進行方向をセットする関数
 private:
-	int hModel_;//タンクヘッドモデルのハンドル
+	int hModel_;//弾モデルのハンドル
+	XMFLOAT3 move_;//弾の進行方向
+	int timer;
 };
+
+
 
