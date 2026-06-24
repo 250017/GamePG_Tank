@@ -26,8 +26,9 @@ private:
 	int hModel_;//弾モデルのハンドル
 	XMFLOAT3 move_;//弾の進行方向
 	int timer;
-	int mvPos_x;
-	int mvPos_z;
+	int newPos_x;
+	int newPos_z;
+	float mvs_;
 };
 
 
