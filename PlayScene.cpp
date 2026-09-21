@@ -5,6 +5,11 @@
 //#include "TankHead.h"
 #include <vector>
 
+namespace
+{
+	int SpawnCount = 0;
+}
+
 PlayScene::PlayScene(GameObject* parent)
 	:GameObject(parent, "PlayScene")
 {
@@ -30,7 +35,12 @@ void PlayScene::Update()
 {
 	timer_++;
 	std::vector<Enemy*> enemies;
-	if (timer_ % 120 == 0) enemies.push_back(Instantiate<Enemy>(this));
+	if (timer_ % 120 == 0 && SpawnCount < 10)
+	{
+		enemies.push_back(Instantiate<Enemy>(this));
+		SpawnCount++;
+
+	}
 }
 
 void PlayScene::Draw()

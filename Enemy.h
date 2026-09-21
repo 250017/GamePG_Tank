@@ -22,6 +22,7 @@ public:
 	//開放
 	void Release() override;
 	void SetMoveVector(XMFLOAT3 move) { move_ = move; }//弾の進行方向をセットする関数
+	void OnCollision(GameObject* pTarget) override;
 private:
 	int hModel_;//弾モデルのハンドル
 	XMFLOAT3 move_;//弾の進行方向

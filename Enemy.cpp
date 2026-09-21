@@ -23,13 +23,12 @@ void Enemy::Initialize()
 						//ハンドル、開始フレーム、アニメーション速度
 	Model::SetAnimFrame(hModel_, 1, 100, 1.0f);
 	assert(hModel_ >= 0);//モデルの読み込みに失敗していないか	
-	SphereCollider* collider = new SphereCollider({ 0, 0, 0 }, 0.5);
+	SphereCollider* collider = new SphereCollider({ 0, 0, 0 }, 1);
 	AddCollider(collider);
 
 	
 
 	mvs_ = 0.05; //動く速さ
-
 }
 
 void Enemy::Update()
@@ -75,8 +74,18 @@ void Enemy::Draw()
 {
 	Model::SetTransform(hModel_, transform_);
 	Model::Draw(hModel_);
+
+	CollisionDraw();
 }
 
 void Enemy::Release()
 {
+}
+
+void Enemy::OnCollision(GameObject* pTarget)
+{
+	if (pTarget->GetObjectName() == "Bullet")
+	{
+		KillMe();
+	}
 }

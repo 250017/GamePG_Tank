@@ -2,6 +2,7 @@
 #include "Engine/Model.h"
 #include "Engine//Input.h"
 #include "Engine/Collider.h"
+#include "Enemy.h"
 
 Bullet::Bullet(GameObject* parent)
 	:GameObject(parent, "Bullet"), hModel_(-1), move_(XMFLOAT3(0, 1, 0))
@@ -13,7 +14,7 @@ void Bullet::Initialize()
 {
 	hModel_ = Model::Load("Bullet.fbx");
 	assert(hModel_ >= 0);//モデルの読み込みに失敗していないか
-	Collider* collider = new SphereCollider({ 0, 0, 0 }, 0.25f);//半径0.5の球形の当たり判定を作る
+	Collider* collider = new SphereCollider({ 0, 0, 0 }, 0.25f);//半径0.25の球形の当たり判定を作る
 	AddCollider(collider); //当たり判定をbulletに追加する
 	timer = 0;
 }
@@ -34,8 +35,7 @@ void Bullet::Update()
 
 	move_.y -= 0.0025f;
 
-
-
+	OnCollision(FindObject("Enemy"));//Enemyと衝突判定
 
 
 }
@@ -49,3 +49,5 @@ void Bullet::Draw()
 void Bullet::Release()
 {
 }
+
+

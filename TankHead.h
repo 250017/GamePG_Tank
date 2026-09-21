@@ -22,7 +22,11 @@ public:
 
 	//開放
 	void Release() override;
+
+	//着弾点計算
+	void GetCirclePos();
 private:
 	int hModel_;//タンクヘッドモデルのハンドル
+	int hModel_Circle_;//弾の着弾地点
 };
 
